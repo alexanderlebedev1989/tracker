@@ -41,9 +41,11 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         boolean found = false;
         int index = indexOf(id);
-        item.setId(id);
-        items[index] = item;
-        found = true;
+        if(index != -1) {
+            item.setId(id);
+            items[index] = item;
+            found = true;
+        }
         return found;
     }
 
@@ -61,9 +63,11 @@ public class Tracker {
     public boolean delete(String id) {
         boolean found = false;
         int index = indexOf(id);
-        System.arraycopy(items, index + 1, items, index, position - index);
-        items[position - 1] = null;
-        position--;
+        if(index != -1) {
+            System.arraycopy(items, index + 1, items, index, position - index);
+            items[position - 1] = null;
+            position--;
+        }
         return found;
     }
 }
